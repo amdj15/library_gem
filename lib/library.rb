@@ -14,16 +14,16 @@ module Library
 			@orders = Hash.new
 		end
 
-		def addBook (title, author, biography = '')
+		def add_book (title, author, biography = '')
 			@authors[author] = Author.new(author, biography) unless @authors[author]
 			@authors[author].createBook(title) unless @authors[author].books[title]
 		end
 
-		def createReader(*args)
+		def add_reader(*args)
 			@readers[args[1]] = Reader.new(*args)
 		end
 
-		def createOrder(reader, bookName, authorName)
+		def add_order(reader, bookName, authorName)
 			@orders[reader.email] = [] unless @orders[reader.email]
 
 			if (@orders[reader.email].index(@authors[authorName].books[bookName]) == nil)
@@ -34,7 +34,7 @@ module Library
 			end
 		end
 
-		def whoOftenTakesTheBook
+		def who_often_takes_the_book
 			oftenReaderMail, len = @orders.keys[0], @orders.values[0].length
 
 			@orders.each do |email,  orders|
@@ -44,7 +44,7 @@ module Library
 			return @readers[oftenReaderMail]
 		end
 
-		def mostPopularBook
+		def most_popular_book
 			popularBook = @authors.values[0].books.values[0]
 
 			@authors.each do |key, author|
