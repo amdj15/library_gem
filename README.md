@@ -22,6 +22,8 @@ Or install it yourself as:
 
 ## Usage
 
+Create an empty library and fill it:
+
 ```ruby
 require 'bundler/setup'
 require "library"
@@ -50,10 +52,17 @@ library.add_order(reader_2, "scn book", "JL")
 library.add_order(reader_2, "trd book", "JL2")
 library.add_order(reader_3, "scn book", "JL")
 
+# save to file
 library.save
+```
 
-# library = Library::Library.load "data"
+Or load from file:
+```ruby
+library = Library::Library.load "data"
+```
 
+Actions:
+```ruby
 puts library.who_often_takes_the_book.name
 puts library.most_popular_book
 library.how_many_people_ordered_one_of_the_three_most_popular_books.each {|book| puts "#{book.title} : #{book.ordersCnt}"}
