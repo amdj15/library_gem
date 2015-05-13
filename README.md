@@ -22,7 +22,42 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+    require 'bundler/setup'
+    require "library"
+
+    library = Library::Library.new
+
+    library.add_book("fst book", "JL")
+    library.add_book("scn book", "JL")
+
+    library.add_book("trd book", "JL2")
+    library.add_book("super book", "JL2")
+    library.add_book("super book  2", "JL2")
+    library.add_book("super book 3", "JL2")
+
+    # create readers
+    reader = library.add_reader("amdj15", "amdj15@gmail.com", "Dp")
+    reader_2 = library.add_reader("reader_2", "reader@tst.com", "Dp")
+    reader_3 = library.add_reader("reader_3", "reader_3@tst.com", "Dp")
+
+    # create orders
+    library.add_order(reader, "fst book", "JL")
+    library.add_order(reader, "scn book", "JL")
+    library.add_order(reader, "trd book", "JL2")
+
+    library.add_order(reader_2, "scn book", "JL")
+    library.add_order(reader_2, "trd book", "JL2")
+    library.add_order(reader_3, "scn book", "JL")
+
+    library.save
+
+    # library = Library::Library.load "data"
+
+    puts library.who_often_takes_the_book.name
+    puts library.most_popular_book
+    library.how_many_people_ordered_one_of_the_three_most_popular_books.each     {|book| puts "#{book.title} : #{book.ordersCnt}"}
+```
 
 ## Development
 
